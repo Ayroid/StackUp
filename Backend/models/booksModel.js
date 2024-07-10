@@ -28,10 +28,10 @@ const bookSchema = mongoose.Schema(
       type: Number,
       default: 0,
     },
-    // imageURL: {
-    //   type: String,
-    //   required: true,
-    // },
+    imageURL: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,
@@ -41,4 +41,3 @@ const bookSchema = mongoose.Schema(
 const BooksModel = mongoose.model("books", bookSchema);
 
 export default BooksModel;
-

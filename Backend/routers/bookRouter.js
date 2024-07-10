@@ -1,6 +1,6 @@
 import { Router } from "express";
+import { UPLOAD } from "../middlewares/multer.js";
 
-// CONTROLLERS
 import {
   getBooks,
   getBookById,
@@ -9,12 +9,12 @@ import {
   deleteBook,
 } from "../controllers/bookController.js";
 
-// ROUTER
 const bookRouter = Router();
 
-// ROUTES
-bookRouter.route("/").get(getBooks).post(createBook);
+bookRouter
+  .route("/")
+  .get(getBooks)
+  .post(UPLOAD.fields([{ name: "bookCover", maxCount: 1 }]), createBook);
 bookRouter.route("/:id").get(getBookById).put(updateBook).delete(deleteBook);
 
-// EXPORT
 export default bookRouter;

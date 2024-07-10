@@ -1,4 +1,6 @@
 import BooksModel from "../models/booksModel.js";
+import dotenv from "dotenv";
+dotenv.config();
 
 const getBookById = async (req, res) => {
   try {
@@ -54,11 +56,14 @@ const createBook = async (req, res) => {
       return res.status(400).send("Book already exists.");
     }
 
+    const imageURL = `${process.env.SERVER_URI}/images/books/${req.files["bookCover"][0].filename}`;
+
     const newBook = new BooksModel({
       title,
       description,
       author,
       category,
+      imageURL,
     });
 
     const bookCreated = await newBook.save();
