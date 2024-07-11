@@ -2,12 +2,11 @@ import mongoose from "mongoose";
 
 const bookSchema = mongoose.Schema(
   {
-    // TODO: Add userPublisher to the schema
-    // userPublisher: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   required: true,
-    //   ref: "users",
-    // },
+    userPublisher: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "users",
+    },
     title: {
       type: String,
       required: true,

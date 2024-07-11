@@ -1,4 +1,6 @@
 import BooksModel from "../models/booksModel.js";
+import UserModel from "../models/userModel.js";
+import fs from "fs";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -59,6 +61,7 @@ const createBook = async (req, res) => {
     const imageURL = `${process.env.SERVER_URI}/images/books/${req.files["bookCover"][0].filename}`;
 
     const newBook = new BooksModel({
+      userPublisher: req.user.id,
       title,
       description,
       author,
@@ -69,6 +72,19 @@ const createBook = async (req, res) => {
     const bookCreated = await newBook.save();
 
     if (!bookCreated) {
+      return res.status(500).send("Failed to create book.");
+    }
+
+    const userUpdated = await UserModel.findByIdAndUpdate(
+      req.user.id,
+      {
+        $push: { publishedBooks: bookCreated._id },
+      },
+      { new: true }
+    );
+
+    if (!userUpdated) {
+      await BooksModel.findByIdAndDelete(bookCreated._id);
       return res.status(500).send("Failed to create book.");
     }
 
@@ -125,6 +141,29 @@ const deleteBook = async (req, res) => {
 
     if (!book) {
       return res.status(404).send("Book not found.");
+    }
+
+    const userUpdated = await UserModel.findByIdAndUpdate(
+      req.user.id,
+      {
+        $pull: { publishedBooks: id },
+      },
+      { new: true }
+    );
+
+    // DELETE BOOK IMAGE FROM SERVER
+    const imagePath =
+      "public/images/books/" + book.imageURL.split("/images/books/")[1];
+
+    fs.unlink(imagePath, (err) => {
+      if (err) {
+        console.error("Error deleting book image:", err);
+      }
+    });
+
+    if (!userUpdated) {
+      await BooksModel.create(book);
+      return res.status(500).send("Failed to delete book.");
     }
 
     res.status(200).send("Book deleted successfully.");
