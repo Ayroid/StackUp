@@ -5,7 +5,7 @@ import { Auth, Category, Home } from "./pages";
 const DummyNavbar = () => {
   return (
     <div className="navbar">
-      <h1>Navbar</h1>
+      <h1 className="font-extrabold text-3xl text-red-700">Navbar</h1>
       <ul>
         <li>
           <Link to="/">Home</Link>
