@@ -1,35 +1,37 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import { Sidebar } from "./components";
 import { Auth, Category, Home } from "./pages";
 
-const DummyNavbar = () => {
-  return (
-    <div className="navbar">
-      <h1 className="font-extrabold text-3xl text-red-700">Navbar</h1>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/category">Category</Link>
-        </li>
-        <li>
-          <Link to="/login">Login</Link>
-        </li>
-      </ul>
-    </div>
-  );
-};
+const randomBookNames = [
+  "The Alchemist",
+  "The Da Vinci Code",
+  "The Great Gatsby",
+  "The Kite Runner",
+  "The Catcher in the Rye",
+  "To Kill a Mockingbird",
+  "The Hobbit",
+  "The Lord of the Rings",
+  "The Book Thief",
+  "The Hunger Games",
+  "Harry Potter",
+  "Twilight",
+  "The Fault in Our Stars",
+];
 
 function App() {
   return (
-    <div className="mainDiv">
-      <DummyNavbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Auth />} />
-        <Route path="/category/*" element={<Category />} />
-      </Routes>
+    <div className="flex">
+      <div className="fixed h-screen w-72 bg-red-500">
+        <Sidebar username="Ayush Singh" userBooks={randomBookNames} />
+      </div>
+      <div className="ml-72 w-full bg-blue-500">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Auth />} />
+          <Route path="/category/*" element={<Category />} />
+        </Routes>
+      </div>
     </div>
   );
 }
