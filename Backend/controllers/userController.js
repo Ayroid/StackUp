@@ -90,7 +90,9 @@ const loginUser = async (req, res) => {
 const readUser = async (req, res) => {
   try {
     const userId = req.params.id;
-    const user = await UserModel.findById(userId);
+    const user = await UserModel.findById(userId)
+      .populate("publishedBooks")
+      .populate("reviews");
 
     if (!user) {
       return res.status(404).send("User not found.");
