@@ -34,8 +34,8 @@ app.get("/test", (req, res) => {
 
 // ROUTES
 app.use("/api/user", userRouter);
-app.use("/api/book", VERIFYTOKEN, bookRouter);
-app.use("/api/review", VERIFYTOKEN, reviewRouter);
+app.use("/api/books", VERIFYTOKEN, bookRouter);
+app.use("/api/reviews", VERIFYTOKEN, reviewRouter);
 
 // DATABASE DISCONNECTION
 process.on("SIGINT", () => {
