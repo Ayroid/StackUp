@@ -3,9 +3,9 @@ import { FaUser } from "react-icons/fa";
 
 const Sidebar = ({ username, userBooks }) => {
   return (
-    <div className="bg-accentLight flex h-full flex-col justify-between text-white">
+    <div className="flex h-full flex-col justify-between bg-accentLight text-white">
       <div className="flex flex-col">
-        <div className="bg-accent flex h-24 items-center gap-5 border-l-4 border-blue-500 p-5">
+        <div className="flex h-24 items-center gap-5 border-l-4 border-blue-500 bg-accent p-5">
           <FaUser size="40" color="gray" />
           <h1 className="text-lg font-extrabold text-white">
             Welcome! <br />{" "}
@@ -22,10 +22,10 @@ const Sidebar = ({ username, userBooks }) => {
         </ul>
       </div>
       <div>
-        <h1 className="bg-accent w-full cursor-pointer border-l-4 border-blue-500 py-5 text-center font-semibold">
+        <h1 className="w-full cursor-pointer border-l-4 border-blue-500 bg-accent py-5 text-center font-semibold">
           Add Book
         </h1>
-        <h1 className="bg-accent w-full cursor-pointer border-l-4 border-red-500 py-5 text-center font-semibold text-red-500">
+        <h1 className="w-full cursor-pointer border-l-4 border-red-500 bg-accent py-5 text-center font-semibold text-red-500">
           Sign Out
         </h1>
       </div>

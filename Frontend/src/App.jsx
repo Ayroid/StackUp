@@ -22,10 +22,10 @@ const randomBookNames = [
 function App() {
   return (
     <div className="flex">
-      <div className="fixed h-screen w-72 bg-red-500">
+      <div className="fixed h-screen w-80">
         <Sidebar username="Ayush Singh" userBooks={randomBookNames} />
       </div>
-      <div className="ml-72 w-full bg-blue-500">
+      <div className="ml-80 w-full">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Auth />} />

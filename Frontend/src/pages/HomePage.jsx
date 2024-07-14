@@ -1,96 +1,79 @@
-import { Book } from "../components";
+import { Book, BookCategory } from "../components";
 import { useState } from "react";
 
 const HomePage = () => {
   const [popupOpen, setPopupOpen] = useState(false);
 
-  const bookData = [
+  const recentlyPublishedBooks = [
     {
-      imageURL:
-        "https://www.designforwriters.com/wp-content/uploads/2017/10/design-for-writers-book-cover-tf-2-a-million-to-one.jpg",
+      imageURL: "/bookImage/book1.jpg",
     },
     {
-      imageURL:
-        "https://www.designforwriters.com/wp-content/uploads/2017/10/design-for-writers-book-cover-tf-2-a-million-to-one.jpg",
+      imageURL: "/bookImage/book1.jpg",
     },
     {
-      imageURL:
-        "https://www.designforwriters.com/wp-content/uploads/2017/10/design-for-writers-book-cover-tf-2-a-million-to-one.jpg",
+      imageURL: "/bookImage/book1.jpg",
     },
     {
-      imageURL:
-        "https://www.designforwriters.com/wp-content/uploads/2017/10/design-for-writers-book-cover-tf-2-a-million-to-one.jpg",
+      imageURL: "/bookImage/book1.jpg",
     },
     {
-      imageURL:
-        "https://www.designforwriters.com/wp-content/uploads/2017/10/design-for-writers-book-cover-tf-2-a-million-to-one.jpg",
+      imageURL: "/bookImage/book1.jpg",
     },
     {
-      imageURL:
-        "https://www.designforwriters.com/wp-content/uploads/2017/10/design-for-writers-book-cover-tf-2-a-million-to-one.jpg",
+      imageURL: "/bookImage/book1.jpg",
     },
     {
-      imageURL:
-        "https://www.designforwriters.com/wp-content/uploads/2017/10/design-for-writers-book-cover-tf-2-a-million-to-one.jpg",
-    },
-    {
-      imageURL:
-        "https://www.designforwriters.com/wp-content/uploads/2017/10/design-for-writers-book-cover-tf-2-a-million-to-one.jpg",
-    },
-    {
-      imageURL:
-        "https://www.designforwriters.com/wp-content/uploads/2017/10/design-for-writers-book-cover-tf-2-a-million-to-one.jpg",
-    },
-    {
-      imageURL:
-        "https://www.designforwriters.com/wp-content/uploads/2017/10/design-for-writers-book-cover-tf-2-a-million-to-one.jpg",
-    },
-    {
-      imageURL:
-        "https://www.designforwriters.com/wp-content/uploads/2017/10/design-for-writers-book-cover-tf-2-a-million-to-one.jpg",
-    },
-    {
-      imageURL:
-        "https://www.designforwriters.com/wp-content/uploads/2017/10/design-for-writers-book-cover-tf-2-a-million-to-one.jpg",
-    },
-    {
-      imageURL:
-        "https://www.designforwriters.com/wp-content/uploads/2017/10/design-for-writers-book-cover-tf-2-a-million-to-one.jpg",
-    },
-    {
-      imageURL:
-        "https://www.designforwriters.com/wp-content/uploads/2017/10/design-for-writers-book-cover-tf-2-a-million-to-one.jpg",
-    },
-    {
-      imageURL:
-        "https://www.designforwriters.com/wp-content/uploads/2017/10/design-for-writers-book-cover-tf-2-a-million-to-one.jpg",
-    },
-    {
-      imageURL:
-        "https://www.designforwriters.com/wp-content/uploads/2017/10/design-for-writers-book-cover-tf-2-a-million-to-one.jpg",
-    },
-    {
-      imageURL:
-        "https://www.designforwriters.com/wp-content/uploads/2017/10/design-for-writers-book-cover-tf-2-a-million-to-one.jpg",
-    },
-    {
-      imageURL:
-        "https://www.designforwriters.com/wp-content/uploads/2017/10/design-for-writers-book-cover-tf-2-a-million-to-one.jpg",
-    },
-    {
-      imageURL:
-        "https://www.designforwriters.com/wp-content/uploads/2017/10/design-for-writers-book-cover-tf-2-a-million-to-one.jpg",
-    },
-    {
-      imageURL:
-        "https://www.designforwriters.com/wp-content/uploads/2017/10/design-for-writers-book-cover-tf-2-a-million-to-one.jpg",
+      imageURL: "/bookImage/book1.jpg",
     },
   ];
 
+  const highestRatedBooks = [
+    {
+      imageURL: "/bookImage/book1.jpg",
+    },
+    {
+      imageURL: "/bookImage/book1.jpg",
+    },
+    {
+      imageURL: "/bookImage/book1.jpg",
+    },
+    {
+      imageURL: "/bookImage/book1.jpg",
+    },
+    {
+      imageURL: "/bookImage/book1.jpg",
+    },
+    {
+      imageURL: "/bookImage/book1.jpg",
+    },
+    {
+      imageURL: "/bookImage/book1.jpg",
+    },
+  ];
+
+  const bookCategories = [
+    "Fiction",
+    "Non-Fiction",
+    "Fantasy",
+    "Science Fiction",
+    "Mystery",
+    "Thriller",
+    "Romance",
+    "Horror",
+    "Biography",
+    "Autobiography",
+    "History",
+    "Science",
+    "Self-Help",
+    "Cookbooks",
+  ];
+
   return (
-    <div>
-      <div className="grid grid-flow-row grid-cols-2 gap-12 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
-        {bookData.map((book, index) => (
+    <div className="p-8">
+      <h1 className="mb-6 text-xl font-bold">Recently Published Books</h1>
+      <div className="1 grid grid-flow-row place-items-center gap-y-8 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-7">
+        {recentlyPublishedBooks.map((book, index) => (
           <Book
             key={index}
             imageURL={book.imageURL}
@@ -98,9 +81,21 @@ const HomePage = () => {
           />
         ))}
       </div>
-
-      <div className={`${popupOpen ? "text-red-500" : "text-blue-500"}`}>
-        Popup
+      <h1 className="mb-6 mt-8 text-xl font-bold">Highest Rated Books</h1>
+      <div className="1 grid grid-flow-row place-items-center gap-y-8 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-7">
+        {highestRatedBooks.map((book, index) => (
+          <Book
+            key={index}
+            imageURL={book.imageURL}
+            popUpCallBack={() => setPopupOpen(!popupOpen)}
+          />
+        ))}
+      </div>
+      <h1 className="mb-6 mt-8 text-xl font-bold">Book Categories</h1>
+      <div className="1 grid grid-flow-row place-items-center gap-y-8 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-7">
+        {bookCategories.map((category, index) => (
+          <BookCategory key={index} categoryName={category} />
+        ))}
       </div>
     </div>
   );
