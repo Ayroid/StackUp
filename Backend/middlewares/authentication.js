@@ -64,7 +64,6 @@ const verifyAccessToken = async (req, res) => {
   try {
     const tokenValid = await checkAccessToken(token, "access");
     if (tokenValid) {
-      console.log("Token Verified");
       return res.status(StatusCodes.OK).send("Token Verified");
     }
 

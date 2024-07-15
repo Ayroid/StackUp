@@ -4,7 +4,7 @@ import { StatusCodes } from "http-status-codes";
 
 const readUser = async (req, res) => {
   try {
-    const userId = req.params.id;
+    const userId = req.user.id;
     const user = await UserModel.findById(userId)
       .populate("publishedBooks")
       .populate("reviews");
@@ -24,7 +24,7 @@ const readUser = async (req, res) => {
 
 const readUserBooks = async (req, res) => {
   try {
-    const userId = req.params.id;
+    const userId = req.user.id;
     const user = await UserModel.findById(userId).populate("publishedBooks");
 
     if (!user) {

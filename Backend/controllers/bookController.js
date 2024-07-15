@@ -44,6 +44,36 @@ const getBooks = async (req, res) => {
   }
 };
 
+const getHighestRatedBooks = async (req, res) => {
+  try {
+    const books = await BooksModel.find().sort({ ratings: -1 }).limit(7);
+
+    if (!books) {
+      return res.status(404).send("Books not found.");
+    }
+
+    res.status(200).send(books);
+  } catch (err) {
+    console.error("Error getting books:", err);
+    res.status(500).send("Failed to get books. Please try again later.");
+  }
+};
+
+const getRecentlyPublishedBooks = async (req, res) => {
+  try {
+    const books = await BooksModel.find().sort({ createdAt: -1 }).limit(7);
+
+    if (!books) {
+      return res.status(404).send("Books not found.");
+    }
+
+    res.status(200).send(books);
+  } catch (err) {
+    console.error("Error getting books:", err);
+    res.status(500).send("Failed to get books. Please try again later.");
+  }
+};
+
 const createBook = async (req, res) => {
   try {
     const { title, description, author, category } = req.body;
@@ -173,55 +203,12 @@ const deleteBook = async (req, res) => {
   }
 };
 
-export { getBooks, getBookById, createBook, updateBook, deleteBook };
-
-// SAMPLE DATA FOR TESTING
-
-// {
-//   "title": "The Alchemist",
-//   "description": "A book about following your dreams.",
-//   "author": "Paulo Coelho",
-//   "category": "Fiction"
-// }
-
-// {
-//   "title": "The Lean Startup",
-//   "description": "A book about starting a business.",
-//   "author": "Eric Ries",
-//   "category": "Business"
-// }
-
-// {
-//   "title": "The Da Vinci Code",
-//   "description": "A book about"
-//   "author": "Dan Brown",
-//   "category": "Mystery"
-// }
-
-// {
-//   "title": "The 4-Hour Workweek",
-//   "description": "A book about productivity.",
-//   "author": "Tim Ferriss",
-//   "category": "Business"
-// }
-
-// {
-//   "title": "The Art of War",
-//   "description": "A book about strategy.",
-//   "author": "Sun Tzu",
-//   "category": "Strategy"
-// }
-
-// {
-//   "title": "The Power of Now",
-//   "description": "A book about living in the present.",
-//   "author": "Eckhart Tolle",
-//   "category": "Self-Help"
-// }
-
-// {
-//   "title": "The Subtle Art of Not Giving a F*ck",
-//   "description": "A book about not caring about everything.",
-//   "author": "Mark Manson",
-//   "category": "Self-Help"
-// }
+export {
+  getBooks,
+  getBookById,
+  getHighestRatedBooks,
+  getRecentlyPublishedBooks,
+  createBook,
+  updateBook,
+  deleteBook,
+};

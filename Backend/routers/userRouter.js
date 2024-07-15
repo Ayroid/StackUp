@@ -5,7 +5,7 @@ import { verifyToken } from "../middlewares/authentication.js";
 
 const userRouter = Router();
 
-userRouter.route("/:id").get(verifyToken, readUser);
-userRouter.route("/:id/books").get(verifyToken, readUserBooks);
+userRouter.route("/").get(verifyToken, readUser);
+userRouter.route("/books").get(verifyToken, readUserBooks);
 
 export default userRouter;

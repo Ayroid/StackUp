@@ -69,11 +69,9 @@ const loginUser = async (req, res) => {
 
         console.log("User Logged In", { user });
 
-        // DELAY A DELAY OF 5 SECONDS
-        const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-        await delay(5000);
-
-        return res.status(StatusCodes.OK).send({ accessToken, refreshToken });
+        return res
+          .status(StatusCodes.OK)
+          .send({ accessToken, refreshToken, username: user[0].username });
       } else {
         console.log("User Not Logged In", { user });
         return res.status(StatusCodes.UNAUTHORIZED).send("User Not Logged In");
