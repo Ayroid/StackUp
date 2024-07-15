@@ -11,7 +11,7 @@ const Popup = ({ children, isOpen, onClose, container }) => {
 
   return (
     <div
-      className={`fixed flex h-screen w-screen items-center justify-center bg-[#2020208a]`}
+      className={`fixed z-50 flex h-screen w-screen items-center justify-center bg-[#2020208a]`}
       onClick={onClose}
     >
       <div

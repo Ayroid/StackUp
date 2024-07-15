@@ -1,25 +1,9 @@
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, Navigate } from "react-router-dom";
 import "./App.css";
 import { Sidebar } from "./components";
 import { Auth, Category, Home } from "./pages";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import { Toaster } from "react-hot-toast";
-
-const randomBookNames = [
-  "The Alchemist",
-  "The Da Vinci Code",
-  "The Great Gatsby",
-  "The Kite Runner",
-  "The Catcher in the Rye",
-  "To Kill a Mockingbird",
-  "The Hobbit",
-  "The Lord of the Rings",
-  "The Book Thief",
-  "The Hunger Games",
-  "Harry Potter",
-  "Twilight",
-  "The Fault in Our Stars",
-];
 
 function App() {
   const location = useLocation();
@@ -28,12 +12,10 @@ function App() {
     <div className="flex">
       {location.pathname !== "/auth" && (
         <div className="fixed h-screen w-80">
-          <Sidebar username="Ayush Singh" userBooks={randomBookNames} />
+          <Sidebar />
         </div>
       )}
-      <div
-        className={location.pathname === "/auth" ? "w-full" : "ml-80 w-full"}
-      >
+      <div className="w-full">
         <Routes>
           <Route
             path="/"
@@ -52,6 +34,8 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+          <Route path="/category/*" element={<Navigate to="/" replace />} />
 
           <Route
             path="/category/:category"

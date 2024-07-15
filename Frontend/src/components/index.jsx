@@ -6,3 +6,5 @@ export { default as FormLoading } from "./Loading/FormLoading";
 export { default as Popup } from "./Popup/Popup";
 export { default as SignOut } from "./Popup/SignOut";
 export { default as AddBook } from "./Popup/AddBook";
+export { default as BookInfo } from "./BookInfo";
+export { default as StarRating } from "./StarRating";

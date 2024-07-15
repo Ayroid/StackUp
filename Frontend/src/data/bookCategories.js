@@ -2,7 +2,7 @@ const bookCategories = [
   "Fiction",
   "Non-Fiction",
   "Fantasy",
-  "Science Fiction",
+  "Science-Fiction",
   "Mystery",
   "Thriller",
   "Romance",

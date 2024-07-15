@@ -1,6 +1,6 @@
 import { FaUser } from "react-icons/fa";
 import { Popup, SignOut, AddBook, Loading } from "./index";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { serverURL } from "../data/constants";
 import axios from "axios";
 
@@ -8,7 +8,7 @@ const Sidebar = () => {
   const username = localStorage.getItem("username");
   const [showLogOutPopup, setShowLogOutPopup] = useState(false);
   const [showAddBookPopup, setShowAddBookPopup] = useState(false);
-  const [userBooks, setUserBooks] = useState(null);
+  const [userBooks, setUserBooks] = useState([]);
   const [bookLoading, setBookLoading] = useState(false);
 
   const openSignOutPopup = () => {
@@ -47,6 +47,14 @@ const Sidebar = () => {
       .finally(() => setBookLoading(false));
   }, []);
 
+  const memoizedUserBooks = useMemo(() => {
+    return userBooks.map((book, index) => (
+      <li key={index} className="py-1 pl-4">
+        <span className="text-white">{book}</span>
+      </li>
+    ));
+  }, [userBooks]);
+
   return (
     <>
       {showLogOutPopup && (
@@ -76,11 +84,7 @@ const Sidebar = () => {
             {bookLoading ? (
               <Loading color={"white"} height={5} top={-10} />
             ) : (
-              userBooks?.map((book, index) => (
-                <li key={index} className="py-1 pl-4">
-                  <span className="text-white">{book}</span>
-                </li>
-              ))
+              memoizedUserBooks
             )}
           </ul>
         </div>
