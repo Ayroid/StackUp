@@ -1,7 +1,8 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import { Sidebar } from "./components";
 import { Auth, Category, Home } from "./pages";
+import ProtectedRoute from "./utils/ProtectedRoute";
 
 const randomBookNames = [
   "The Alchemist",
@@ -20,16 +21,45 @@ const randomBookNames = [
 ];
 
 function App() {
+  const location = useLocation();
+
   return (
     <div className="flex">
-      <div className="fixed h-screen w-80">
-        <Sidebar username="Ayush Singh" userBooks={randomBookNames} />
-      </div>
-      <div className="ml-80 w-full">
+      {location.pathname !== "/auth" && (
+        <div className="fixed h-screen w-80">
+          <Sidebar username="Ayush Singh" userBooks={randomBookNames} />
+        </div>
+      )}
+      <div
+        className={location.pathname === "/auth" ? "w-full" : "ml-80 w-full"}
+      >
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Auth />} />
-          <Route path="/category/*" element={<Category />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute path="/">
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/auth"
+            element={
+              <ProtectedRoute path="/auth">
+                <Auth />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/category/:category"
+            element={
+              <ProtectedRoute path="/category">
+                <Category />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </div>
     </div>
