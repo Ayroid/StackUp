@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { Database } from "./controllers/connectDatabase.js";
-import { VERIFYTOKEN } from "./middlewares/authentication.js";
+import { verifyToken } from "./middlewares/authentication.js";
 
 // CONFIG
 dotenv.config();
@@ -11,7 +11,8 @@ dotenv.config();
 const PORT = 3000;
 const MONGODB_URI = process.env.MONGODB_URI;
 
-// ROUTERS
+// IMPORTING ROUTERS
+import authRouter from "./routers/authRouter.js";
 import userRouter from "./routers/userRouter.js";
 import bookRouter from "./routers/bookRouter.js";
 import reviewRouter from "./routers/reviewRouter.js";
@@ -28,14 +29,15 @@ app.use(cors());
 app.use(express.json());
 
 // Test Route
-app.get("/test", (req, res) => {
+app.get("/api/test", (req, res) => {
   res.send("Application is running.");
 });
 
 // ROUTES
+app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
-app.use("/api/books", VERIFYTOKEN, bookRouter);
-app.use("/api/reviews", VERIFYTOKEN, reviewRouter);
+app.use("/api/books", verifyToken, bookRouter);
+app.use("/api/reviews", verifyToken, reviewRouter);
 
 // DATABASE DISCONNECTION
 process.on("SIGINT", () => {

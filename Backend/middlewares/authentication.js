@@ -64,6 +64,7 @@ const verifyAccessToken = async (req, res) => {
   try {
     const tokenValid = await checkAccessToken(token, "access");
     if (tokenValid) {
+      console.log("Token Verified");
       return res.status(StatusCodes.OK).send("Token Verified");
     }
 
@@ -103,11 +104,11 @@ const refreshAccessToken = async (req, res) => {
 };
 
 export {
-  generateAccessToken as GENERATEACCESSTOKEN,
-  generateRefreshToken as GENERATEREFRESHTOKEN,
-  checkAccessToken as CHECKACCESSTOKEN,
-  generateAccessTokenFromRefreshToken as GENERATEACCESSTOKENFROMREFRESHTOKEN,
-  verifyToken as VERIFYTOKEN,
-  verifyAccessToken as VERIFYACCESSTOKEN,
-  refreshAccessToken as REFRESHACCESSTOKEN,
+  generateAccessToken,
+  generateRefreshToken,
+  checkAccessToken,
+  generateAccessTokenFromRefreshToken,
+  verifyToken,
+  verifyAccessToken,
+  refreshAccessToken,
 };
