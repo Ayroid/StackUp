@@ -4,8 +4,7 @@ import bookCategories from "../../data/bookCategories";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { FormLoading } from "../index";
-
-const serverURL = import.meta.env.VITE_SERVER_URL;
+import { serverURL } from "../../data/constants";
 
 const AddBook = ({ closePopup }) => {
   const [title, setTitle] = useState("");

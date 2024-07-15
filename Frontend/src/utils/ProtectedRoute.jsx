@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import { Navigate } from "react-router-dom";
+import { serverURL } from "../data/constants";
 
-const SERVER_URL = import.meta.env.VITE_SERVER_URL;
-const verifyTokenURL = `${SERVER_URL}/auth/verify`;
-const refreshTokenURL = `${SERVER_URL}/auth/refresh`;
+const verifyTokenURL = `${serverURL}/auth/verify`;
+const refreshTokenURL = `${serverURL}/auth/refresh`;
 
 const ProtectedRoute = ({ path, children }) => {
   const [verified, setVerified] = useState(false);

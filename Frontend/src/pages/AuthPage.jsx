@@ -3,8 +3,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Loading, Popup } from "../components";
-
-const serverURL = import.meta.env.VITE_SERVER_URL;
+import { serverURL } from "../data/constants";
 
 const LoginPage = () => {
   const navigate = useNavigate();

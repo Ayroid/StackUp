@@ -1,11 +1,15 @@
 import PropTypes from "prop-types";
 import { FaUser } from "react-icons/fa";
-import { Popup, SignOut, AddBook } from "./index";
-import { useState } from "react";
+import { Popup, SignOut, AddBook, Loading } from "./index";
+import { useState, useEffect } from "react";
+import { serverURL } from "../data/constants";
+import axios from "axios";
 
-const Sidebar = ({ username, userBooks }) => {
+const Sidebar = ({ username }) => {
   const [showLogOutPopup, setShowLogOutPopup] = useState(false);
   const [showAddBookPopup, setShowAddBookPopup] = useState(false);
+  const [userBooks, setUserBooks] = useState(null);
+  const [bookLoading, setBookLoading] = useState(false);
 
   const openSignOutPopup = () => {
     setShowLogOutPopup(true);
@@ -22,6 +26,26 @@ const Sidebar = ({ username, userBooks }) => {
   const closeAddBookPopup = () => {
     setShowAddBookPopup(false);
   };
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+
+    setBookLoading(true);
+
+    axios
+      .get(`${serverURL}/user/books`, {
+        headers: {
+          Authorization: accessToken,
+        },
+      })
+      .then((response) => {
+        setUserBooks(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+      .finally(() => setBookLoading(false));
+  }, []);
 
   return (
     <>
@@ -47,12 +71,17 @@ const Sidebar = ({ username, userBooks }) => {
             </h1>
           </div>
           <h1 className="px-5 py-3 text-xl font-bold">Your Books</h1>
+
           <ul className="max-h-[65dvh] list-inside list-disc overflow-auto px-5 text-blue-500">
-            {userBooks.map((book, index) => (
-              <li key={index} className="py-1 pl-4">
-                <span className="text-white">{book}</span>
-              </li>
-            ))}
+            {bookLoading ? (
+              <Loading />
+            ) : (
+              userBooks?.map((book, index) => (
+                <li key={index} className="py-1 pl-4">
+                  <span className="text-white">{book}</span>
+                </li>
+              ))
+            )}
           </ul>
         </div>
         <div>
@@ -80,7 +109,6 @@ const Sidebar = ({ username, userBooks }) => {
 
 Sidebar.propTypes = {
   username: PropTypes.string.isRequired,
-  userBooks: PropTypes.array.isRequired,
 };
 
 export default Sidebar;
