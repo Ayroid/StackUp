@@ -74,7 +74,7 @@ const Sidebar = ({ username }) => {
 
           <ul className="max-h-[65dvh] list-inside list-disc overflow-auto px-5 text-blue-500">
             {bookLoading ? (
-              <Loading />
+              <Loading color={"white"} height={5} top={-10} />
             ) : (
               userBooks?.map((book, index) => (
                 <li key={index} className="py-1 pl-4">
