@@ -1,5 +1,6 @@
 import { Book, BookCategory } from "../components";
 import { useState } from "react";
+import bookCategories from "../data/bookCategories";
 
 const HomePage = () => {
   const [popupOpen, setPopupOpen] = useState(false);
@@ -50,23 +51,6 @@ const HomePage = () => {
     {
       imageURL: "/bookImage/book1.jpg",
     },
-  ];
-
-  const bookCategories = [
-    "Fiction",
-    "Non-Fiction",
-    "Fantasy",
-    "Science Fiction",
-    "Mystery",
-    "Thriller",
-    "Romance",
-    "Horror",
-    "Biography",
-    "Autobiography",
-    "History",
-    "Science",
-    "Self-Help",
-    "Cookbooks",
   ];
 
   return (

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
-import { Loading } from "../components";
+import { Loading, Popup } from "../components";
 
 const serverURL = import.meta.env.VITE_SERVER_URL;
 
@@ -67,7 +67,11 @@ const LoginPage = () => {
 
   return (
     <>
-      {loading && <Loading />}
+      {loading && (
+        <Popup>
+          <Loading />
+        </Popup>
+      )}
       <form
         onSubmit={handleLoginSubmit}
         className="mt-20 flex w-96 flex-col items-center justify-center space-y-4 rounded-md bg-gray-300 p-8"
@@ -160,7 +164,11 @@ const SignupPage = () => {
 
   return (
     <>
-      {loading && <Loading />}
+      {loading && (
+        <Popup>
+          <Loading />
+        </Popup>
+      )}
       <form
         onSubmit={handleSignupSubmit}
         className="mt-20 flex w-96 flex-col items-center justify-center space-y-4 rounded-md bg-gray-300 p-8"
@@ -216,7 +224,6 @@ const AuthPage = () => {
           ? "New User? Create an account"
           : "Already have an account? Log In"}
       </button>
-      <Toaster position="bottom-right" reverseOrder={false} />
     </div>
   );
 };

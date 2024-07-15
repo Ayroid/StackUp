@@ -3,6 +3,7 @@ import "./App.css";
 import { Sidebar } from "./components";
 import { Auth, Category, Home } from "./pages";
 import ProtectedRoute from "./utils/ProtectedRoute";
+import { Toaster } from "react-hot-toast";
 
 const randomBookNames = [
   "The Alchemist",
@@ -62,6 +63,7 @@ function App() {
           />
         </Routes>
       </div>
+      <Toaster position="bottom-right" reverseOrder={false} />
     </div>
   );
 }
