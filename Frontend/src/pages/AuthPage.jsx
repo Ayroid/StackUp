@@ -50,6 +50,7 @@ const LoginPage = () => {
         const { accessToken, refreshToken } = response.data;
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("refreshToken", refreshToken);
+        localStorage.setItem("username", username);
         toast.success("Logged in successfully!");
         navigate("/");
       })

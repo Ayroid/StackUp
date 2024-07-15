@@ -1,11 +1,11 @@
-import PropTypes from "prop-types";
 import { FaUser } from "react-icons/fa";
 import { Popup, SignOut, AddBook, Loading } from "./index";
 import { useState, useEffect } from "react";
 import { serverURL } from "../data/constants";
 import axios from "axios";
 
-const Sidebar = ({ username }) => {
+const Sidebar = () => {
+  const username = localStorage.getItem("username");
   const [showLogOutPopup, setShowLogOutPopup] = useState(false);
   const [showAddBookPopup, setShowAddBookPopup] = useState(false);
   const [userBooks, setUserBooks] = useState(null);
@@ -105,10 +105,6 @@ const Sidebar = ({ username }) => {
       </div>
     </>
   );
-};
-
-Sidebar.propTypes = {
-  username: PropTypes.string.isRequired,
 };
 
 export default Sidebar;
