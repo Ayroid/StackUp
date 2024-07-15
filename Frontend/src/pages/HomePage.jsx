@@ -71,7 +71,7 @@ const HomePage = () => {
 
   return (
     <div className="p-8">
-      <h1 className="mb-6 text-xl font-bold">Recently Published Books</h1>
+      <h1 className="mb-6 ml-7 text-xl font-bold">Recently Published Books</h1>
       <div className="1 grid grid-flow-row place-items-center gap-y-8 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-7">
         {recentlyPublishedBooks.map((book, index) => (
           <Book
@@ -81,7 +81,7 @@ const HomePage = () => {
           />
         ))}
       </div>
-      <h1 className="mb-6 mt-8 text-xl font-bold">Highest Rated Books</h1>
+      <h1 className="mb-6 ml-7 mt-8 text-xl font-bold">Highest Rated Books</h1>
       <div className="1 grid grid-flow-row place-items-center gap-y-8 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-7">
         {highestRatedBooks.map((book, index) => (
           <Book
@@ -91,7 +91,7 @@ const HomePage = () => {
           />
         ))}
       </div>
-      <h1 className="mb-6 mt-8 text-xl font-bold">Book Categories</h1>
+      <h1 className="mb-6 ml-7 mt-8 text-xl font-bold">Book Categories</h1>
       <div className="1 grid grid-flow-row place-items-center gap-y-8 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-7">
         {bookCategories.map((category, index) => (
           <BookCategory key={index} categoryName={category} />
