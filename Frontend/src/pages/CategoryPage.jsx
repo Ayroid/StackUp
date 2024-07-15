@@ -55,6 +55,8 @@ const CategoryPage = () => {
         <div className="1 grid grid-flow-row place-items-center gap-y-8 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-7">
           {loading ? (
             <Loading />
+          ) : categoryBooks.length === 0 ? (
+            <h1 className="min-h-52 text-xl">No Books Found!</h1>
           ) : (
             categoryBooks.map((book, index) => (
               <Book

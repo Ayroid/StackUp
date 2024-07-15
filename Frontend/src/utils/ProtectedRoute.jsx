@@ -64,7 +64,6 @@ const ProtectedRoute = ({ path, children }) => {
           setVerified(true);
         }
       } catch (error) {
-        console.log("Token Invalid!");
         await refreshToken().then((ans) => {
           if (ans) {
             setVerified(true);

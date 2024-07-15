@@ -1,10 +1,12 @@
-import { FaUser } from "react-icons/fa";
+import { AiFillHome } from "react-icons/ai";
 import { Popup, SignOut, AddBook, Loading } from "./index";
 import { useState, useEffect, useMemo } from "react";
 import { serverURL } from "../data/constants";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
   const username = localStorage.getItem("username");
   const [showLogOutPopup, setShowLogOutPopup] = useState(false);
   const [showAddBookPopup, setShowAddBookPopup] = useState(false);
@@ -72,7 +74,12 @@ const Sidebar = () => {
       <div className="flex h-full flex-col justify-between bg-accentLight text-white">
         <div className="flex flex-col">
           <div className="flex h-24 items-center gap-5 border-l-4 border-blue-500 bg-accent p-5">
-            <FaUser size="40" color="gray" />
+            <AiFillHome
+              size="40"
+              color="gray"
+              onClick={() => navigate("/")}
+              className="cursor-pointer"
+            />
             <h1 className="text-lg font-extrabold text-white">
               Welcome! <br />{" "}
               <span className="font-medium text-blue-500">{username}</span>
